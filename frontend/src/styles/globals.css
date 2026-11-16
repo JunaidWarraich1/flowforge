@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-slate-100 min-h-screen antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Dot Grid Background Pattern */
+.dot-grid-bg {
+  background-color: #0a0a0f;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+.canvas-grid {
+  background-color: #0a0a0f;
+  background-image: radial-gradient(#1e293b 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+
+/* Glass-morphism Utilities */
+.glass-panel {
+  background: rgba(17, 17, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(17, 17, 24, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #1e293b;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.2);
+}
+
+/* React Flow Custom Overrides */
+.react-flow__background {
+  background-color: #0a0a0f !important;
+}
+
+.react-flow__controls {
+  background: #111118 !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: #111118 !important;
+  border-bottom: 1px solid #1e293b !important;
+  color: #94a3b8 !important;
+  fill: #94a3b8 !important;
+}
+
+.react-flow__controls-button:hover {
+  background: #1a1a25 !important;
+  color: #f1f5f9 !important;
+  fill: #f1f5f9 !important;
+}
+
+.react-flow__minimap {
+  background: #111118 !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(10, 10, 15, 0.75) !important;
+}
+
+.react-flow__minimap-node {
+  fill: #334155 !important;
+  stroke: none !important;
+}
+
+.react-flow__edge-path {
+  stroke: #475569;
+  stroke-width: 2;
+  transition: stroke 0.2s ease;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #a78bfa;
+  stroke-width: 2.5;
+}
+
+/* Custom Animated Edge for Execution */
+@keyframes edgeFlow {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.flowing-edge path {
+  stroke: #06b6d4 !important;
+  stroke-width: 2.5 !important;
+  stroke-dasharray: 6 6 !important;
+  animation: edgeFlow 0.8s linear infinite !important;
+  filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.6));
+}
+
+.flowing-edge-success path {
+  stroke: #10b981 !important;
+  stroke-width: 2 !important;
+}
+
+.flowing-edge-failed path {
+  stroke: #ef4444 !important;
+  stroke-width: 2 !important;
+}
+
+/* Node Handle Overrides */
+.react-flow__handle {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  border: 2px solid #0a0a0f !important;
+  background-color: #94a3b8 !important;
+  transition: all 0.2s ease;
+}
+
+.react-flow__handle:hover {
+  transform: scale(1.35);
+  background-color: #06b6d4 !important;
+  box-shadow: 0 0 8px #06b6d4;
+}
+
+.react-flow__handle-top {
+  top: -6px !important;
+}
+
+.react-flow__handle-bottom {
+  bottom: -6px !important;
+}
