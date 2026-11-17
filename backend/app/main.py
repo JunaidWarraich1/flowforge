@@ -48,6 +48,24 @@ app.add_middleware(
 )
 
 
+@app.middleware("http")
+async def vercel_path_rewrite_middleware(request, call_next):
+    # Normalize Vercel serverless function path rewrites
+    path = request.scope.get("path", "")
+    if path.startswith("/api/index.py"):
+        new_path = path[len("/api/index.py") :] or "/"
+        request.scope["path"] = new_path
+    elif path == "/api/index" or path == "/api":
+        request.scope["path"] = "/"
+
+    # If Vercel sets x-matched-path header, use original requested route
+    matched_path = request.headers.get("x-matched-path")
+    if matched_path and not matched_path.startswith("/api/index"):
+        request.scope["path"] = matched_path
+
+    return await call_next(request)
+
+
 @app.get("/", tags=["root"])
 async def root() -> dict:
     return {
