@@ -1,8 +1,7 @@
-[tool.ruff]
 target-version = "py311"
 line-length = 100
 
-[tool.ruff.lint]
+[lint]
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -13,19 +12,12 @@ select = [
     "C4",  # flake8-comprehensions
 ]
 ignore = [
-    "B008",  # do not perform function calls in argument defaults (standard FastAPI Depends)
+    "B008",  # do not perform function calls in argument defaults
     "UP035", # collections.abc vs typing
     "UP006", # non-pep585-annotation
     "UP042", # str, Enum vs StrEnum
     "E501",  # line too long
 ]
 
-[tool.ruff.lint.isort]
+[lint.isort]
 known-first-party = ["app"]
-
-[tool.pytest.ini_options]
-asyncio_mode = "strict"
-filterwarnings = [
-    "ignore::DeprecationWarning",
-    "ignore::UserWarning",
-]
