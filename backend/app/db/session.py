@@ -14,8 +14,13 @@ engine_kwargs = {"echo": False, "future": True}
 if settings.DATABASE_URL.startswith("sqlite"):
     engine_kwargs["connect_args"] = {"check_same_thread": False}
 
+clean_db_url = settings.DATABASE_URL
+# Automatically normalize sslmode parameter for asyncpg compatibility (e.g. Neon PostgreSQL)
+if "sslmode=" in clean_db_url:
+    clean_db_url = clean_db_url.replace("sslmode=", "ssl=")
+
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    clean_db_url,
     **engine_kwargs,
 )
 
