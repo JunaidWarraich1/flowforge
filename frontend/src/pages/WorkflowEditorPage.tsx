@@ -134,18 +134,18 @@ export const WorkflowEditorPage: React.FC = () => {
   return (
     <div className="flex flex-col h-screen w-screen overflow-hidden bg-background select-none">
       {/* Canvas Top Bar */}
-      <header className="h-14 border-b border-slate-800/80 bg-[#0c0c14] px-4 flex items-center justify-between z-20">
+      <header className="h-14 border-b border-surface-border bg-background px-4 flex items-center justify-between z-20">
         {/* Left: Back & Workflow Name */}
         <div className="flex items-center gap-3">
           <Link
             to="/workflows"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-colors"
+            className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-surface transition-colors"
             title="Back to workflows"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
 
-          <div className="h-4 w-px bg-slate-800" />
+          <div className="h-4 w-px bg-surface-border" />
 
           {/* Inline Editable Workflow Name */}
           <input
@@ -153,14 +153,14 @@ export const WorkflowEditorPage: React.FC = () => {
             value={workflowName}
             onChange={(e) => setWorkflowName(e.target.value)}
             onBlur={handleSave}
-            className="bg-transparent border border-transparent hover:border-slate-700 focus:border-primary rounded px-2 py-1 text-sm font-semibold text-slate-100 outline-none transition-colors max-w-xs sm:max-w-md truncate"
+            className="bg-transparent border border-transparent hover:border-surface-border focus:border-primary rounded px-2 py-1 text-sm font-semibold text-zinc-100 outline-none transition-colors max-w-xs sm:max-w-md truncate"
             title="Click to rename"
           />
 
           {/* Dirty indicator */}
           {isDirty && (
             <span
-              className="w-2 h-2 rounded-full bg-amber-400"
+              className="w-2 h-2 rounded-full bg-accent"
               title="Unsaved changes (Cmd+S)"
             />
           )}
@@ -169,16 +169,16 @@ export const WorkflowEditorPage: React.FC = () => {
           <div className="relative">
             <button
               onClick={() => setShowStatusDropdown(!showStatusDropdown)}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#141420] border border-slate-800 text-xs font-mono"
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface border border-surface-border text-xs font-mono"
             >
               <Badge variant={workflowStatus} size="sm">
                 {workflowStatus}
               </Badge>
-              <ChevronDown className="w-3 h-3 text-slate-500" />
+              <ChevronDown className="w-3 h-3 text-zinc-500" />
             </button>
 
             {showStatusDropdown && (
-              <div className="absolute left-0 mt-1.5 w-32 bg-[#12121c] border border-slate-800 rounded-xl shadow-xl py-1 z-30">
+              <div className="absolute left-0 mt-1.5 w-32 bg-surface border border-surface-border rounded-xl shadow-card-carbon py-1 z-30">
                 {(['draft', 'active', 'archived'] as WorkflowStatus[]).map((st) => (
                   <button
                     key={st}
@@ -186,7 +186,7 @@ export const WorkflowEditorPage: React.FC = () => {
                       setWorkflowStatus(st);
                       setShowStatusDropdown(false);
                     }}
-                    className="w-full text-left px-3 py-1.5 text-xs text-slate-300 hover:bg-slate-800/60 capitalize"
+                    className="w-full text-left px-3 py-1.5 text-xs text-zinc-300 hover:bg-[#1a1a1e] capitalize"
                   >
                     {st}
                   </button>
@@ -202,12 +202,12 @@ export const WorkflowEditorPage: React.FC = () => {
             onClick={() => setIsPaletteOpen(!isPaletteOpen)}
             className={`p-1.5 rounded-lg border text-xs font-medium flex items-center gap-1.5 transition-colors ${
               isPaletteOpen
-                ? 'bg-slate-800/80 border-slate-700 text-slate-200'
-                : 'bg-[#12121a] border-slate-800 text-slate-400 hover:text-slate-200'
+                ? 'bg-surface border-[#3d392e] text-zinc-200'
+                : 'bg-background-deep border-surface-border text-zinc-400 hover:text-zinc-200'
             }`}
             title="Toggle Node Library"
           >
-            <Layers className="w-4 h-4" />
+            <Layers className="w-4 h-4 text-primary" />
             <span className="hidden sm:inline">Palette</span>
           </button>
 
@@ -233,7 +233,7 @@ export const WorkflowEditorPage: React.FC = () => {
             onClick={handleExecute}
             isLoading={isExecutionRunning}
             leftIcon={<Play className="w-3.5 h-3.5 fill-current" />}
-            className="shadow-glow-primary bg-primary hover:bg-primary-hover"
+            className="shadow-gold-active"
           >
             {isExecutionRunning ? 'Executing...' : 'Run Pipeline'}
           </Button>

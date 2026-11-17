@@ -25,7 +25,7 @@ export const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex bg-[#0a0a0f] text-slate-100 selection:bg-primary selection:text-white">
+    <div className="min-h-screen w-full flex bg-background text-zinc-100 selection:bg-primary selection:text-black">
       {/* Left Column: Form */}
       <div className="flex-1 flex flex-col justify-center px-8 sm:px-16 lg:px-24 z-10">
         <motion.div
@@ -35,14 +35,17 @@ export const RegisterPage: React.FC = () => {
           className="w-full max-w-md mx-auto"
         >
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center shadow-glow-primary">
-              <Workflow className="w-6 h-6 text-white" />
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#d4af37] to-[#f59e0b] flex items-center justify-center shadow-gold-active">
+              <Workflow className="w-6 h-6 text-black" />
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
                 FlowForge
+                <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary">
+                  Pro
+                </span>
               </h1>
-              <p className="text-xs text-slate-500 font-mono">
+              <p className="text-xs text-zinc-400 font-mono">
                 Visual Workflow Engine
               </p>
             </div>
@@ -52,7 +55,7 @@ export const RegisterPage: React.FC = () => {
             <h2 className="text-2xl font-bold tracking-tight text-white">
               Create an account
             </h2>
-            <p className="text-sm text-slate-400 mt-1">
+            <p className="text-sm text-zinc-400 mt-1">
               Start building visual pipelines in seconds.
             </p>
           </div>
@@ -75,7 +78,7 @@ export const RegisterPage: React.FC = () => {
               placeholder="Muhammad Junaid"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              leftIcon={<User className="w-4 h-4 text-slate-500" />}
+              leftIcon={<User className="w-4 h-4 text-zinc-500" />}
             />
 
             <Input
@@ -85,7 +88,7 @@ export const RegisterPage: React.FC = () => {
               placeholder="engineer@company.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              leftIcon={<Mail className="w-4 h-4 text-slate-500" />}
+              leftIcon={<Mail className="w-4 h-4 text-zinc-500" />}
             />
 
             <Input
@@ -95,7 +98,7 @@ export const RegisterPage: React.FC = () => {
               placeholder="Minimum 6 characters"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              leftIcon={<Lock className="w-4 h-4 text-slate-500" />}
+              leftIcon={<Lock className="w-4 h-4 text-zinc-500" />}
             />
 
             <Button
@@ -103,18 +106,18 @@ export const RegisterPage: React.FC = () => {
               variant="primary"
               size="lg"
               isLoading={isLoading}
-              className="w-full mt-2"
+              className="w-full mt-2 shadow-gold-active"
               rightIcon={<ArrowRight className="w-4 h-4" />}
             >
               Get Started
             </Button>
           </form>
 
-          <p className="text-center text-xs text-slate-400 mt-8">
+          <p className="text-center text-xs text-zinc-400 mt-8">
             Already have an account?{' '}
             <Link
               to="/login"
-              className="text-violet-400 hover:text-violet-300 font-semibold underline underline-offset-4"
+              className="text-primary hover:text-primary-light font-semibold underline underline-offset-4"
             >
               Sign in
             </Link>
@@ -122,14 +125,14 @@ export const RegisterPage: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Right Column: Hero Graphic */}
-      <div className="hidden lg:flex flex-1 relative bg-gradient-to-br from-[#120d24] via-[#0d1024] to-[#080811] items-center justify-center p-12 overflow-hidden border-l border-slate-800/80">
-        <div className="absolute inset-0 dot-grid-bg opacity-30" />
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
+      {/* Right Column: Hero Graphic - Carbon & Champagne Gold */}
+      <div className="hidden lg:flex flex-1 relative bg-background-deep items-center justify-center p-12 overflow-hidden border-l border-surface-border">
+        <div className="absolute inset-0 dot-grid-bg opacity-40" />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-lg space-y-6 text-left z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-mono">
             <ShieldCheck className="w-3.5 h-3.5 text-accent" />
             ENTERPRISE GRADE SECURITY
           </div>
@@ -138,7 +141,7 @@ export const RegisterPage: React.FC = () => {
             Developer first automation infrastructure.
           </h3>
 
-          <p className="text-base text-slate-400 leading-relaxed">
+          <p className="text-base text-zinc-400 leading-relaxed">
             Construct reactive computational DAGs, configure HTTP requests, logic
             branches, and custom Python transformations with zero setup.
           </p>

@@ -55,32 +55,32 @@ export const SettingsPage: React.FC = () => {
       </div>
 
       {/* Profile Overview Card */}
-      <div className="bg-[#111118]/80 backdrop-blur-md border border-slate-800 rounded-2xl p-6">
-        <h3 className="text-base font-semibold text-slate-100 mb-4 flex items-center gap-2">
+      <div className="bg-surface border border-surface-border rounded-xl p-6 shadow-card-carbon">
+        <h3 className="text-base font-semibold text-zinc-100 mb-4 flex items-center gap-2">
           <User className="w-4 h-4 text-primary" /> Profile Overview
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded-xl bg-[#0a0a0f] border border-slate-800/80">
-            <span className="text-[11px] font-mono uppercase text-slate-500">
+          <div className="p-4 rounded-xl bg-background-deep border border-surface-border">
+            <span className="text-[11px] font-mono uppercase text-zinc-500">
               Full Name
             </span>
-            <p className="text-sm font-semibold text-slate-200 mt-1">
-              {user?.full_name || 'Muhammad Junaid'}
+            <p className="text-sm font-semibold text-zinc-200 mt-1">
+              {user?.full_name || 'Muhammad Junaid Warraich'}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#0a0a0f] border border-slate-800/80">
-            <span className="text-[11px] font-mono uppercase text-slate-500">
+          <div className="p-4 rounded-xl bg-background-deep border border-surface-border">
+            <span className="text-[11px] font-mono uppercase text-zinc-500">
               Email Address
             </span>
-            <p className="text-sm font-semibold text-slate-200 mt-1">
+            <p className="text-sm font-semibold text-zinc-200 mt-1">
               {user?.email || 'user@flowforge.dev'}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#0a0a0f] border border-slate-800/80">
-            <span className="text-[11px] font-mono uppercase text-slate-500">
+          <div className="p-4 rounded-xl bg-background-deep border border-surface-border">
+            <span className="text-[11px] font-mono uppercase text-zinc-500">
               Assigned Role
             </span>
             <div className="mt-1">
@@ -90,11 +90,11 @@ export const SettingsPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#0a0a0f] border border-slate-800/80">
-            <span className="text-[11px] font-mono uppercase text-slate-500">
+          <div className="p-4 rounded-xl bg-background-deep border border-surface-border">
+            <span className="text-[11px] font-mono uppercase text-zinc-500">
               Member Since
             </span>
-            <p className="text-sm font-mono text-slate-300 mt-1">
+            <p className="text-sm font-mono text-zinc-300 mt-1">
               {user?.created_at
                 ? new Date(user.created_at).toLocaleDateString()
                 : 'November 2026'}
@@ -104,9 +104,9 @@ export const SettingsPage: React.FC = () => {
       </div>
 
       {/* Security & Password Card */}
-      <div className="bg-[#111118]/80 backdrop-blur-md border border-slate-800 rounded-2xl p-6">
-        <h3 className="text-base font-semibold text-slate-100 mb-4 flex items-center gap-2">
-          <Key className="w-4 h-4 text-cyan-400" /> Security & Password
+      <div className="bg-surface border border-surface-border rounded-xl p-6 shadow-card-carbon">
+        <h3 className="text-base font-semibold text-zinc-100 mb-4 flex items-center gap-2">
+          <Key className="w-4 h-4 text-primary" /> Security & Password
         </h3>
 
         {statusMessage && (

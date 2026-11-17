@@ -115,15 +115,15 @@ export const NodeConfigPanel: React.FC = () => {
   const getNodeIcon = () => {
     switch (nodeType) {
       case 'trigger':
-        return <Play className="w-4 h-4 text-cyan-400" />;
+        return <Play className="w-4 h-4 text-primary" />;
       case 'http_request':
-        return <Globe className="w-4 h-4 text-blue-400" />;
+        return <Globe className="w-4 h-4 text-sky-400" />;
       case 'transform':
-        return <Shuffle className="w-4 h-4 text-violet-400" />;
+        return <Shuffle className="w-4 h-4 text-[#e5c07b]" />;
       case 'condition':
         return <GitBranch className="w-4 h-4 text-amber-400" />;
       case 'delay':
-        return <Clock className="w-4 h-4 text-slate-400" />;
+        return <Clock className="w-4 h-4 text-zinc-400" />;
       case 'code':
         return <Code2 className="w-4 h-4 text-emerald-400" />;
       case 'log':
@@ -137,12 +137,12 @@ export const NodeConfigPanel: React.FC = () => {
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: 380, opacity: 0 }}
       transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-      className="absolute top-0 right-0 w-96 h-full bg-[#0d0d14]/95 backdrop-blur-md border-l border-slate-800 z-30 flex flex-col shadow-2xl"
+      className="absolute top-0 right-0 w-96 h-full bg-[#0b0b0c] border-l border-[#2a2822] z-30 flex flex-col shadow-2xl"
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-slate-800/80">
+      <div className="flex items-center justify-between p-4 border-b border-[#2a2822]">
         <div className="flex items-center gap-2.5">
-          <div className="p-1.5 rounded-lg bg-[#141420] border border-slate-800">
+          <div className="p-1.5 rounded-md bg-[#141416] border border-[#2a2822]">
             {getNodeIcon()}
           </div>
           <div>
@@ -457,7 +457,7 @@ export const NodeConfigPanel: React.FC = () => {
       </div>
 
       {/* Footer Actions */}
-      <div className="p-4 border-t border-slate-800/80 bg-[#0a0a0f]/80 flex items-center justify-between gap-3">
+      <div className="p-4 border-t border-[#2a2822] bg-[#070708] flex items-center justify-between gap-3">
         <Button
           variant="danger"
           size="sm"

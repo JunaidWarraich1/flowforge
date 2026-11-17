@@ -100,7 +100,7 @@ export const WorkflowsPage: React.FC = () => {
           variant="primary"
           onClick={() => setIsModalOpen(true)}
           leftIcon={<Plus className="w-4 h-4" />}
-          className="shadow-glow-primary self-start sm:self-auto"
+          className="shadow-gold-active self-start sm:self-auto"
         >
           New Workflow
         </Button>
@@ -113,16 +113,16 @@ export const WorkflowsPage: React.FC = () => {
             placeholder="Search workflows by title..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            leftIcon={<Search className="w-4 h-4 text-slate-500" />}
+            leftIcon={<Search className="w-4 h-4 text-zinc-500" />}
           />
         </div>
 
         <div className="flex items-center gap-2 self-start sm:self-auto">
-          <Filter className="w-4 h-4 text-slate-500 shrink-0" />
+          <Filter className="w-4 h-4 text-zinc-500 shrink-0" />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="bg-[#111118] border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-300 outline-none focus:border-primary"
+            className="bg-surface border border-surface-border rounded-lg px-3 py-2 text-xs text-zinc-300 outline-none focus:border-primary"
           >
             <option value="all">All Statuses</option>
             <option value="draft">Draft</option>
@@ -155,7 +155,7 @@ export const WorkflowsPage: React.FC = () => {
             <Link
               key={wf.id}
               to={`/workflows/${wf.id}`}
-              className="group relative bg-[#111118]/80 backdrop-blur-md border border-slate-800 rounded-2xl p-5 hover:border-violet-500/50 hover:shadow-glow-primary transition-all duration-200 flex flex-col justify-between"
+              className="group relative bg-surface border border-surface-border rounded-xl p-5 hover:border-primary/60 hover:shadow-card-carbon transition-all duration-200 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-3">
@@ -164,12 +164,12 @@ export const WorkflowsPage: React.FC = () => {
                   </Badge>
 
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[11px] font-mono text-slate-500">
+                    <span className="text-[11px] font-mono text-zinc-500">
                       v{wf.version}
                     </span>
                     <button
                       onClick={(e) => handleDelete(e, wf.id)}
-                      className="text-slate-500 hover:text-red-400 p-1 rounded hover:bg-slate-800/40 transition-colors opacity-0 group-hover:opacity-100"
+                      className="text-zinc-500 hover:text-red-400 p-1 rounded hover:bg-[#1a1a1e] transition-colors opacity-0 group-hover:opacity-100"
                       title="Delete workflow"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -177,22 +177,22 @@ export const WorkflowsPage: React.FC = () => {
                   </div>
                 </div>
 
-                <h3 className="text-base font-semibold text-slate-100 group-hover:text-white transition-colors truncate">
+                <h3 className="text-base font-semibold text-zinc-100 group-hover:text-white transition-colors truncate">
                   {wf.name}
                 </h3>
 
-                <p className="text-xs text-slate-400 mt-1 line-clamp-2 min-h-[32px]">
+                <p className="text-xs text-zinc-400 mt-1 line-clamp-2 min-h-[32px]">
                   {wf.description || 'No description provided.'}
                 </p>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-500">
+              <div className="pt-4 mt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono text-zinc-500">
                 <span className="flex items-center gap-1">
                   <Clock className="w-3 h-3" />
                   {new Date(wf.updated_at || wf.created_at).toLocaleDateString()}
                 </span>
 
-                <span className="text-violet-400 group-hover:translate-x-0.5 transition-transform flex items-center gap-1 font-sans font-medium">
+                <span className="text-primary group-hover:translate-x-0.5 transition-transform flex items-center gap-1 font-sans font-medium">
                   Open Canvas <ArrowRight className="w-3 h-3" />
                 </span>
               </div>
@@ -218,7 +218,7 @@ export const WorkflowsPage: React.FC = () => {
           />
 
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+            <label className="text-xs font-semibold uppercase tracking-wider text-zinc-300">
               Description (Optional)
             </label>
             <textarea
@@ -226,7 +226,7 @@ export const WorkflowsPage: React.FC = () => {
               placeholder="Outline what this workflow executes..."
               value={newWorkflowDesc}
               onChange={(e) => setNewWorkflowDesc(e.target.value)}
-              className="w-full bg-[#111118] border border-slate-800 rounded-lg p-3 text-sm text-slate-100 placeholder-slate-500 outline-none focus:border-primary"
+              className="w-full bg-[#141416] border border-surface-border rounded-lg p-3 text-sm text-zinc-100 placeholder-zinc-500 outline-none focus:border-primary"
             />
           </div>
 

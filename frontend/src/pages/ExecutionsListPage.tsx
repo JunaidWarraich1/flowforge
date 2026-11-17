@@ -36,11 +36,11 @@ export const ExecutionsListPage: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-slate-500 shrink-0" />
+          <Filter className="w-4 h-4 text-zinc-500 shrink-0" />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="bg-[#111118] border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-300 outline-none focus:border-primary"
+            className="bg-surface border border-surface-border rounded-lg px-3 py-2 text-xs text-zinc-300 outline-none focus:border-primary"
           >
             <option value="all">All Statuses</option>
             <option value="pending">Pending</option>
@@ -66,10 +66,10 @@ export const ExecutionsListPage: React.FC = () => {
           }
         />
       ) : (
-        <div className="bg-[#111118]/80 backdrop-blur-md border border-slate-800 rounded-2xl overflow-hidden">
+        <div className="bg-surface border border-surface-border rounded-xl overflow-hidden shadow-card-carbon">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="border-b border-slate-800 text-slate-400 uppercase font-mono text-[10px] bg-[#0d0d14]/60">
+              <thead className="border-b border-surface-border text-zinc-400 uppercase font-mono text-[10px] bg-background-deep">
                 <tr>
                   <th className="py-3 px-4">Execution ID</th>
                   <th className="py-3 px-4">Status</th>
@@ -79,13 +79,13 @@ export const ExecutionsListPage: React.FC = () => {
                   <th className="py-3 px-4 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/50">
+              <tbody className="divide-y divide-surface-border/60">
                 {executions.map((exec) => (
                   <tr
                     key={exec.id}
-                    className="hover:bg-slate-800/20 transition-colors"
+                    className="hover:bg-background-hover/50 transition-colors"
                   >
-                    <td className="py-3.5 px-4 font-mono font-semibold text-slate-200">
+                    <td className="py-3.5 px-4 font-mono font-semibold text-zinc-200">
                       {exec.id.slice(0, 8)}...
                     </td>
                     <td className="py-3.5 px-4">
@@ -93,13 +93,13 @@ export const ExecutionsListPage: React.FC = () => {
                         {exec.status}
                       </Badge>
                     </td>
-                    <td className="py-3.5 px-4 font-mono text-slate-400 capitalize">
+                    <td className="py-3.5 px-4 font-mono text-zinc-400 capitalize">
                       {exec.triggered_by}
                     </td>
-                    <td className="py-3.5 px-4 font-mono text-slate-300">
+                    <td className="py-3.5 px-4 font-mono text-zinc-300">
                       {exec.duration_ms ? `${exec.duration_ms}ms` : '—'}
                     </td>
-                    <td className="py-3.5 px-4 font-mono text-slate-400">
+                    <td className="py-3.5 px-4 font-mono text-zinc-400">
                       {exec.started_at
                         ? new Date(exec.started_at).toLocaleString()
                         : '—'}

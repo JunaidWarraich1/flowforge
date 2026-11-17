@@ -34,21 +34,23 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
   const getStatusBorder = () => {
     switch (status) {
       case 'running':
-        return 'ring-2 ring-violet-500 animate-pulse-glow border-violet-500';
+        return 'ring-1 ring-primary animate-pulse-subtle border-primary';
       case 'completed':
-        return 'border-emerald-500/80 shadow-glow-emerald';
+        return 'border-emerald-500/80 shadow-sm';
       case 'failed':
-        return 'border-red-500/80 shadow-glow-red';
+        return 'border-rose-500/80 shadow-sm';
       default:
-        return selected ? 'ring-2 ring-primary border-primary' : 'border-slate-800 hover:border-slate-700';
+        return selected
+          ? 'ring-1 ring-primary border-primary shadow-gold-active'
+          : 'border-surface-border hover:border-[#4d4738]';
     }
   };
 
   return (
     <div
-      className={`relative w-72 rounded-xl bg-[#111118]/95 backdrop-blur-md border shadow-xl transition-all duration-200 select-none ${getStatusBorder()}`}
+      className={`relative w-72 rounded-lg bg-[#141416]/98 border shadow-card-carbon transition-all duration-200 select-none ${getStatusBorder()}`}
       style={{
-        borderLeftWidth: '5px',
+        borderLeftWidth: '4px',
         borderLeftColor: typeColor,
       }}
     >
@@ -57,21 +59,21 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
         <Handle
           type="target"
           position={Position.Top}
-          className="!w-3 !h-3 !bg-slate-400 !border-2 !border-[#111118] hover:!bg-accent transition-transform hover:scale-125"
+          className="!w-2.5 !h-2.5 !bg-zinc-400 !border-2 !border-[#0b0b0c] hover:!bg-primary transition-transform hover:scale-125"
         />
       )}
 
       {/* Node Header */}
       <div className="p-3.5 flex items-start gap-3">
         <div
-          className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border"
+          className="w-7 h-7 rounded-md flex items-center justify-center shrink-0 border"
           style={{
-            backgroundColor: `${typeColor}15`,
-            borderColor: `${typeColor}35`,
+            backgroundColor: `${typeColor}18`,
+            borderColor: `${typeColor}40`,
             color: typeColor,
           }}
         >
-          <Icon className="w-4 h-4" />
+          <Icon className="w-3.5 h-3.5" />
         </div>
 
         <div className="flex-1 min-w-0">
@@ -85,7 +87,7 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
 
             {/* Execution status indicator */}
             {status === 'running' && (
-              <span className="flex items-center gap-1 text-[11px] text-violet-400 font-mono">
+              <span className="flex items-center gap-1 text-[11px] text-amber-400 font-mono">
                 <Loader2 className="w-3 h-3 animate-spin" />
                 Running
               </span>
@@ -97,19 +99,19 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
               </span>
             )}
             {status === 'failed' && (
-              <span className="flex items-center gap-1 text-[11px] text-red-400 font-mono">
+              <span className="flex items-center gap-1 text-[11px] text-rose-400 font-mono">
                 <XCircle className="w-3 h-3" />
                 Failed
               </span>
             )}
           </div>
 
-          <h5 className="text-sm font-semibold text-slate-100 truncate mt-0.5">
+          <h5 className="text-sm font-semibold text-zinc-100 truncate mt-0.5">
             {label}
           </h5>
 
           {subtitle && (
-            <p className="text-xs text-slate-400 truncate mt-0.5 font-mono">
+            <p className="text-xs text-zinc-400 truncate mt-0.5 font-mono">
               {subtitle}
             </p>
           )}
@@ -118,7 +120,7 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
 
       {/* Custom Body / Extra info */}
       {children && (
-        <div className="px-3.5 pb-3.5 pt-0 border-t border-slate-800/40 mt-1">
+        <div className="px-3.5 pb-3.5 pt-0 border-t border-surface-border/60 mt-1">
           {children}
         </div>
       )}
@@ -130,7 +132,7 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
         <Handle
           type="source"
           position={Position.Bottom}
-          className="!w-3 !h-3 !bg-slate-400 !border-2 !border-[#111118] hover:!bg-accent transition-transform hover:scale-125"
+          className="!w-2.5 !h-2.5 !bg-zinc-400 !border-2 !border-[#0b0b0c] hover:!bg-primary transition-transform hover:scale-125"
         />
       ) : null}
     </div>

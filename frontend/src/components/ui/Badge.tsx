@@ -39,66 +39,66 @@ export const Badge: React.FC<BadgeProps> = ({
       case 'active':
       case 'completed':
         return {
-          bg: 'bg-emerald-500/10',
+          bg: 'bg-emerald-950/40',
           text: 'text-emerald-400',
-          border: 'border-emerald-500/30',
+          border: 'border-emerald-800/60',
           dot: 'bg-emerald-400',
         };
       case 'running':
         return {
-          bg: 'bg-violet-500/15',
-          text: 'text-violet-300',
-          border: 'border-violet-500/40',
-          dot: 'bg-violet-400',
+          bg: 'bg-amber-950/40',
+          text: 'text-amber-400',
+          border: 'border-amber-800/60',
+          dot: 'bg-amber-400',
         };
       case 'failed':
         return {
-          bg: 'bg-red-500/10',
-          text: 'text-red-400',
-          border: 'border-red-500/30',
-          dot: 'bg-red-400',
+          bg: 'bg-rose-950/40',
+          text: 'text-rose-400',
+          border: 'border-rose-800/60',
+          dot: 'bg-rose-400',
         };
       case 'archived':
       case 'condition':
         return {
-          bg: 'bg-amber-500/10',
+          bg: 'bg-amber-950/40',
           text: 'text-amber-400',
-          border: 'border-amber-500/30',
+          border: 'border-amber-800/60',
           dot: 'bg-amber-400',
         };
       case 'trigger':
         return {
-          bg: 'bg-cyan-500/10',
-          text: 'text-cyan-400',
-          border: 'border-cyan-500/30',
-          dot: 'bg-cyan-400',
+          bg: 'bg-[#1f1d17]',
+          text: 'text-primary',
+          border: 'border-primary/40',
+          dot: 'bg-primary',
         };
       case 'http_request':
         return {
-          bg: 'bg-blue-500/10',
-          text: 'text-blue-400',
-          border: 'border-blue-500/30',
-          dot: 'bg-blue-400',
+          bg: 'bg-sky-950/40',
+          text: 'text-sky-400',
+          border: 'border-sky-800/60',
+          dot: 'bg-sky-400',
         };
       case 'transform':
         return {
-          bg: 'bg-purple-500/10',
-          text: 'text-purple-400',
-          border: 'border-purple-500/30',
-          dot: 'bg-purple-400',
+          bg: 'bg-[#1f1d17]',
+          text: 'text-[#e5c07b]',
+          border: 'border-[#e5c07b]/40',
+          dot: 'bg-[#e5c07b]',
         };
       case 'code':
         return {
-          bg: 'bg-teal-500/10',
-          text: 'text-teal-400',
-          border: 'border-teal-500/30',
-          dot: 'bg-teal-400',
+          bg: 'bg-emerald-950/40',
+          text: 'text-emerald-400',
+          border: 'border-emerald-800/60',
+          dot: 'bg-emerald-400',
         };
       case 'log':
         return {
-          bg: 'bg-rose-500/10',
+          bg: 'bg-rose-950/40',
           text: 'text-rose-400',
-          border: 'border-rose-500/30',
+          border: 'border-rose-800/60',
           dot: 'bg-rose-400',
         };
       case 'draft':
@@ -108,10 +108,10 @@ export const Badge: React.FC<BadgeProps> = ({
       case 'skipped':
       default:
         return {
-          bg: 'bg-slate-800/60',
-          text: 'text-slate-400',
-          border: 'border-slate-700/60',
-          dot: 'bg-slate-400',
+          bg: 'bg-[#141416]',
+          text: 'text-zinc-400',
+          border: 'border-[#2a2822]',
+          dot: 'bg-zinc-500',
         };
     }
   };
@@ -121,17 +121,17 @@ export const Badge: React.FC<BadgeProps> = ({
 
   return (
     <span
-      className={`inline-flex items-center font-medium rounded-full border ${style.bg} ${style.text} ${style.border} ${sizeClasses} ${className}`}
+      className={`inline-flex items-center font-mono font-medium rounded-md border ${style.bg} ${style.text} ${style.border} ${sizeClasses} ${className}`}
     >
-      <span className="relative flex h-1.5 w-1.5">
-        {(pulse || variant === 'running') && (
+      <span className="relative flex h-1.5 w-1.5 shrink-0">
+        {pulse && (
           <span
             className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${style.dot}`}
           />
         )}
         <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${style.dot}`} />
       </span>
-      <span className="capitalize">{children}</span>
+      <span>{children}</span>
     </span>
   );
 };

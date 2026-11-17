@@ -61,21 +61,21 @@ export const Modal: React.FC<ModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className={`relative w-full ${maxWidthClasses[maxWidth]} bg-[#111118] border border-slate-800 rounded-2xl shadow-2xl overflow-hidden z-10`}
+            className={`relative w-full ${maxWidthClasses[maxWidth]} bg-surface border border-surface-border rounded-xl shadow-card-carbon overflow-hidden z-10`}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-5 border-b border-slate-800/80">
+            <div className="flex items-center justify-between px-6 py-5 border-b border-surface-border">
               <div>
                 {title && (
-                  <h3 className="text-lg font-semibold text-slate-100">{title}</h3>
+                  <h3 className="text-lg font-semibold text-zinc-100">{title}</h3>
                 )}
                 {description && (
-                  <p className="text-xs text-slate-400 mt-0.5">{description}</p>
+                  <p className="text-xs text-zinc-400 mt-0.5">{description}</p>
                 )}
               </div>
               <button
                 onClick={onClose}
-                className="text-slate-400 hover:text-slate-200 p-1 rounded-lg hover:bg-slate-800/60 transition-colors"
+                className="text-zinc-400 hover:text-zinc-200 p-1 rounded-lg hover:bg-[#1a1a1e] transition-colors"
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />
