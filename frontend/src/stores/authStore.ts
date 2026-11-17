@@ -15,6 +15,15 @@ interface AuthState {
   clearError: () => void;
 }
 
+const formatError = (err: any, fallback: string): string => {
+  const detail = err.response?.data?.detail;
+  if (typeof detail === 'string') return detail;
+  if (Array.isArray(detail) && detail.length > 0) {
+    return detail.map((d: any) => d.msg || JSON.stringify(d)).join(', ');
+  }
+  return err.message || fallback;
+};
+
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
   token: localStorage.getItem('flowforge_token'),
@@ -38,7 +47,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         isLoading: false,
       });
     } catch (err: any) {
-      const msg = err.response?.data?.detail || 'Authentication failed. Please check your credentials.';
+      const msg = formatError(err, 'Authentication failed. Please check your credentials.');
       set({ error: msg, isLoading: false, isAuthenticated: false });
       throw err;
     }
@@ -65,7 +74,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         isLoading: false,
       });
     } catch (err: any) {
-      const msg = err.response?.data?.detail || 'Registration failed. Please check your information.';
+      const msg = formatError(err, 'Registration failed. Please check your information.');
       set({ error: msg, isLoading: false });
       throw err;
     }
