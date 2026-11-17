@@ -1,7 +1,7 @@
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1.router import api_router
@@ -49,7 +49,7 @@ app.add_middleware(
 
 
 @app.middleware("http")
-async def vercel_path_rewrite_middleware(request, call_next):
+async def vercel_path_rewrite_middleware(request: Request, call_next):
     # Normalize Vercel serverless function path rewrites
     path = request.scope.get("path", "")
     if path.startswith("/api/index.py"):
@@ -58,21 +58,20 @@ async def vercel_path_rewrite_middleware(request, call_next):
     elif path == "/api/index" or path == "/api":
         request.scope["path"] = "/"
 
-    # If Vercel sets x-matched-path header, use original requested route
-    matched_path = request.headers.get("x-matched-path")
-    if matched_path and not matched_path.startswith("/api/index"):
-        request.scope["path"] = matched_path
-
     return await call_next(request)
 
 
 @app.get("/", tags=["root"])
-async def root() -> dict:
+async def root(request: Request) -> dict:
     return {
         "app": settings.APP_NAME,
         "status": "online",
         "docs": "/docs",
         "health": "/health",
+        "version": "1.0.0",
+        "headers": dict(request.headers),
+        "raw_scope_path": request.scope.get("path"),
+    }
         "version": "1.0.0",
     }
 
