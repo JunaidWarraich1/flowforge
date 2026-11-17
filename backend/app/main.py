@@ -1,7 +1,7 @@
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1.router import api_router
@@ -55,8 +55,6 @@ async def root() -> dict:
         "status": "online",
         "docs": "/docs",
         "health": "/health",
-        "version": "1.0.0",
-    }
         "version": "1.0.0",
     }
 
