@@ -25,10 +25,8 @@ export const useExecutionWebSocket = (executionId: string | null) => {
     const token = localStorage.getItem('flowforge_token') || '';
 
     // Calculate WS URL
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.host;
     const wsBase =
-      import.meta.env.VITE_WS_URL || `${protocol}//${host}/api/v1/ws`;
+      import.meta.env.VITE_WS_URL || 'wss://flowforge-orpin.vercel.app/api/v1/ws';
     const wsUrl = `${wsBase}/executions/${executionId}?token=${encodeURIComponent(
       token
     )}`;

@@ -1,6 +1,15 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+// Automatically detect production Vercel backend if environment variable is not injected at build time
+const rawBaseUrl =
+  import.meta.env.VITE_API_URL ||
+  import.meta.env.VITE_API_BASE_URL ||
+  'https://flowforge-orpin.vercel.app';
+
+// Ensure base URL does not have duplicate trailing slashes or duplicate /api/v1
+export const API_BASE_URL = rawBaseUrl
+  .replace(/\/api\/v1\/?$/, '')
+  .replace(/\/$/, '');
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
