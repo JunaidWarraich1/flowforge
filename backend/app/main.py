@@ -13,11 +13,18 @@ from app.db.session import engine
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     # Initialize database tables on startup
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    try:
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
+    except Exception as e:
+        import logging
+        logging.getLogger("uvicorn").warning(f"Database startup sync: {e}")
     yield
     # Cleanup database engine on shutdown
-    await engine.dispose()
+    try:
+        await engine.dispose()
+    except Exception:
+        pass
 
 
 app = FastAPI(
@@ -39,6 +46,17 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/", tags=["root"])
+async def root() -> dict:
+    return {
+        "app": settings.APP_NAME,
+        "status": "online",
+        "docs": "/docs",
+        "health": "/health",
+        "version": "1.0.0",
+    }
 
 
 @app.get("/health", tags=["health"])

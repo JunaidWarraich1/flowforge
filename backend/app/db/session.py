@@ -15,6 +15,13 @@ if settings.DATABASE_URL.startswith("sqlite"):
     engine_kwargs["connect_args"] = {"check_same_thread": False}
 
 clean_db_url = settings.DATABASE_URL
+
+# Automatically normalize driver for SQLAlchemy asyncpg
+if clean_db_url.startswith("postgresql://"):
+    clean_db_url = clean_db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+elif clean_db_url.startswith("postgres://"):
+    clean_db_url = clean_db_url.replace("postgres://", "postgresql+asyncpg://", 1)
+
 # Automatically normalize sslmode parameter for asyncpg compatibility (e.g. Neon PostgreSQL)
 if "sslmode=" in clean_db_url:
     clean_db_url = clean_db_url.replace("sslmode=", "ssl=")
