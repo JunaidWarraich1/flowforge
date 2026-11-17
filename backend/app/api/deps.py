@@ -7,6 +7,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import decode_token
+from app.db.init_db import init_db
 from app.db.session import async_session_factory
 from app.models.user import User, UserRole
 
@@ -14,6 +15,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
 
 
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
+    await init_db()
     async with async_session_factory() as session:
         try:
             yield session

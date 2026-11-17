@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.router import api_router
 from app.core.config import settings
 from app.db.base import Base
-from app.db.session import engine
+from app.db.session import clean_db_url, engine
 
 
 @asynccontextmanager
@@ -61,10 +61,21 @@ async def root() -> dict:
 
 @app.get("/health", tags=["health"])
 async def health_check() -> dict:
+    db_status = "ok"
+    db_type = "sqlite" if "sqlite" in clean_db_url else "postgresql"
+    try:
+        from sqlalchemy import text
+        async with engine.connect() as conn:
+            await conn.execute(text("SELECT 1"))
+    except Exception as exc:
+        db_status = f"unreachable: {str(exc)}"
+
     return {
-        "status": "ok",
+        "status": "ok" if db_status == "ok" else "degraded",
         "app": settings.APP_NAME,
         "environment": settings.ENVIRONMENT,
+        "database_type": db_type,
+        "database_status": db_status,
     }
 
 

@@ -1,3 +1,4 @@
+import os
 from collections.abc import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import (
@@ -10,11 +11,16 @@ from app.core.config import settings
 
 engine_kwargs = {"echo": False, "future": True}
 
-# Handle SQLite pool settings if running against local SQLite file
-if settings.DATABASE_URL.startswith("sqlite"):
-    engine_kwargs["connect_args"] = {"check_same_thread": False}
-
 clean_db_url = settings.DATABASE_URL
+
+# In serverless environments (Vercel, AWS Lambda), the root filesystem is read-only.
+# If using SQLite default, redirect to /tmp so writes succeed.
+if clean_db_url.startswith("sqlite") and (os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME")):
+    clean_db_url = "sqlite+aiosqlite:////tmp/flowforge.db"
+
+# Handle SQLite pool settings if running against local SQLite file
+if clean_db_url.startswith("sqlite"):
+    engine_kwargs["connect_args"] = {"check_same_thread": False}
 
 # Automatically normalize driver for SQLAlchemy asyncpg
 if clean_db_url.startswith("postgresql://"):
