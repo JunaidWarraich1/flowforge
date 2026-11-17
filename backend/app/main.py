@@ -62,15 +62,13 @@ async def vercel_path_rewrite_middleware(request: Request, call_next):
 
 
 @app.get("/", tags=["root"])
-async def root(request: Request) -> dict:
+async def root() -> dict:
     return {
         "app": settings.APP_NAME,
         "status": "online",
         "docs": "/docs",
         "health": "/health",
         "version": "1.0.0",
-        "headers": dict(request.headers),
-        "raw_scope_path": request.scope.get("path"),
     }
         "version": "1.0.0",
     }
