@@ -101,6 +101,34 @@ export const LoginPage: React.FC = () => {
             >
               Sign In
             </Button>
+
+            <div className="relative my-4 flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-surface-border" />
+              </div>
+              <span className="relative bg-background px-3 text-[11px] uppercase font-mono tracking-wider text-zinc-500">
+                Or Quick Access
+              </span>
+            </div>
+
+            <Button
+              type="button"
+              variant="secondary"
+              size="lg"
+              className="w-full border border-primary/30 hover:border-primary/60 text-primary-light hover:bg-primary/5 transition-all"
+              onClick={async () => {
+                setEmail('demo@flowforge.dev');
+                setPassword('Password123!');
+                clearError();
+                try {
+                  await login({ email: 'demo@flowforge.dev', password: 'Password123!' });
+                  navigate('/dashboard');
+                } catch (err) {}
+              }}
+            >
+              <Sparkles className="w-4 h-4 mr-2 text-primary" />
+              Explore Live Demo (1-Click)
+            </Button>
           </form>
 
           <p className="text-center text-xs text-zinc-400 mt-8">
